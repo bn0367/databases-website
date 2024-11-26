@@ -9,14 +9,14 @@ try {
 
     $stmt = $conn->prepare("SELECT * FROM artwork LIMIT 100");
     $stmt->execute();
-    print("<table><th>");
+    print("<table style='border: 1px solid black;border-collapse: collapse'><tr>");
     for ($i = 0; $i < $stmt->columnCount(); $i++) {
         $col = $stmt->getColumnMeta($i);
-        print("<td>" . $col["name"] . "</td>");
+        print("<th>" . $col["name"] . "</th>");
     }
-    print("</th>");
+    print("</tr>");
     foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row) {
-        print("<tr>");
+        print("<tr style='border: 1px solid black;border-collapse: collapse'>");
         foreach ($row as $key => $value) {
             print("<td>" . $value . "</td>");
         }
