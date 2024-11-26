@@ -15,8 +15,9 @@ try {
     $conn = new PDO("pgsql:host=$serverName;dbname=$dbName", $user, $pw);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $stmt = $conn->prepare("SELECT * FROM :table LIMIT 100");
-    $stmt->execute(array(":table" => $table));
+    # bad
+    $stmt = $conn->prepare("SELECT * FROM " . $table . " LIMIT 100");
+    $stmt->execute();
     print("<table><tr>");
     for ($i = 0; $i < $stmt->columnCount(); $i++) {
         $col = $stmt->getColumnMeta($i);
