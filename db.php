@@ -4,7 +4,7 @@ global $serverName, $dbName, $user, $pw;
 include "vars.php";
 
 try {
-    print("<!DOCTYPE html><html lang='en'><head><title>View Table</title><link rel='stylesheet' href='style.css'></head><body><a href='index.html'>Back</a>");
+    print("<!DOCTYPE html><html lang='en'><head><title>View Table</title><link rel='stylesheet' href='style.css'></head><body><a href='index.html'>Back</a><br/>");
     $table = $_POST['table'];
 
     if (!in_array($table, ["artwork", "artist", "dimensions", "metadata"])) {
