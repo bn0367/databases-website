@@ -1,9 +1,22 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+<head>
     <title>Test webpage</title>
-  </head>
-  <body>
-    <p>hello</p>
-  </body>
+    <script>
+        function loadTables() {
+            let xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (xhttp.readyState === 4 && xhttp.status === 200) {
+                    document.getElementById("data").innerHTML = xhttp.responseText;
+                }
+            }
+            xhttp.open("GET", "index.php", true);
+            xhttp.send();
+        }
+    </script>
+</head>
+<body>
+<button onclick="loadTables()">Load Data</button>
+<div id="data"></div>
+</body>
 </html>
