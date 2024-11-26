@@ -21,5 +21,5 @@ try {
     }
     print("</table>");
 } catch (PDOException $e) {
-    print("Internal Server Error.");
+    print("Internal Server Error: " . $e->getMessage());
 }
