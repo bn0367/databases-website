@@ -7,3 +7,4 @@ $dbName = "art";
 $user = "postgres";
 $pw = getenv("postgres-password");
 $userID = 38;
+?>
