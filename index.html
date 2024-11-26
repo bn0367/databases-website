@@ -1,23 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script>
-        function loadTables() {
-            let xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function () {
-                if (xhttp.readyState === 4 && xhttp.status === 200) {
-                    document.getElementById("data").innerHTML = xhttp.responseText;
-                }
-            }
-            xhttp.open("GET", "index.php", true);
-            xhttp.send();
-        }
-    </script>
     <link rel="stylesheet" href="style.css">
     <title>Database View</title>
 </head>
 <body>
-<form action="index.php" method="POST">
+<form action="db.php" method="POST">
     <label for="table-select">Table to View</label>
     <select id="table-select" name="table">
         <option>artwork</option>
