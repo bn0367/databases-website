@@ -12,7 +12,7 @@ try {
     print("<table style='border: 1px solid black;border-collapse: collapse'><tr>");
     for ($i = 0; $i < $stmt->columnCount(); $i++) {
         $col = $stmt->getColumnMeta($i);
-        print("<th>" . $col["name"] . "</th>");
+        print("<th style='font-weight: bold'>" . $col["name"] . "</th>");
     }
     print("</tr>");
     foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row) {
