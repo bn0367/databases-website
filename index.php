@@ -23,4 +23,3 @@ try {
 } catch (PDOException $e) {
     print("Internal Server Error: " . $e->getMessage());
 }
-?>
