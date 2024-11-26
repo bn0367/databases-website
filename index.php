@@ -10,13 +10,13 @@ try {
     $stmt = $conn->prepare("SELECT * FROM artwork LIMIT 100");
     $stmt->execute();
 
-    print("<table>");
+    print("<table style='border: 1px solid black;'>");
     foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row) {
-        print("<tr><td>");
+        print("<tr>");
         foreach ($row as $key => $value) {
-            print($value);
+            print("<td>" . $value . "</td>");
         }
-        print("</td></tr>");
+        print("</tr>");
     }
     print("</table>");
 } catch (PDOException $e) {
