@@ -16,7 +16,16 @@
     <link rel="stylesheet" href="style.css">
     <title>Database View</title>
 </head>
-<body onload=loadTables()>
-<div id="data"></div>
+<body>
+<form action="index.php" method="POST">
+    <label for="table-select">Table to View</label>
+    <select id="table-select" name="table">
+        <option>artwork</option>
+        <option>artist</option>
+        <option>metadata</option>
+        <option>dimension</option>
+    </select>
+    <input type="submit">
+</form>
 </body>
 </html>
