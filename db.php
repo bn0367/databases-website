@@ -21,17 +21,20 @@ WHERE websearch_to_tsquery(:query) @@ vectorized OR artist.name LIKE '%:query%'"
 
     $rows = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
     print("{\"status\": \"success\", \"objects\": [");
+    $row_strs = [];
     foreach ($rows as $row) {
-        print("{");
+        $row_str = "{";
+        $values = [];
         foreach ($row as $key => $value) {
             $escaped_value = addslashes($value);
             $escaped_key = addslashes($key);
-            print("\"$key\": \"$value\"");
-            print(next($row) ? "," : "");
+            $values[] = "\"$key\": \"$value\"";
         }
-        print("}");
-        print(next($rows) ? "," : "");
+        $row_str .= implode(",", $values);
+        $row_str .= "}";
+        $row_strs[] = $row_str;
     }
+    print(implode(",", $row_strs));
     print("]}");
 } catch (PDOException $e) {
     print("Internal Server Error: " . $e->getMessage());
