@@ -5,15 +5,47 @@
     <title>Database View</title>
 </head>
 <body>
-<form action="db.php" method="POST">
-    <label for="table-select">Table to View</label>
-    <select id="table-select" name="table">
-        <option>artwork</option>
-        <option>artist</option>
-        <option>metadata</option>
-        <option>dimensions</option>
-    </select>
-    <input type="submit">
-</form>
+    <header>
+        <!-- Main heading of page, brief description -->
+        <h1>Database View</h1>
+        <p>Find artworks by title, artist, date range, and more!</p>
+    </header>
+
+    <!-- Regular Text Search Section -->
+    <section id="basic-search">
+        <form action="db.php" method="POST">
+            <!-- Label and input for basic keyword search -->
+            <label for="basic-search-input">Search:</label>
+            <input type="text" id="basic-search-input" name="basic-search" placeholder="Enter keywords...">
+            <button type="submit">Search</button>
+        </form>
+    </section>
+
+    <!-- Advanced Search Section -->
+    <section id="advanced-search">
+        <h2>Advanced Search</h2>
+        <form action="db.php" method="POST">
+            <div id="advanced-options">
+                <!-- Checkboxes for specific search fields -->
+                <label><input type="checkbox" name="search-columns[]" value="title"> Title</label>
+                <label><input type="checkbox" name="search-columns[]" value="artist_name"> Artist Name</label>
+                <label><input type="checkbox" name="search-columns[]" value="date_range"> Date Range</label>
+                <label><input type="checkbox" name="search-columns[]" value="culture"> Culture</label>
+                <label><input type="checkbox" name="search-columns[]" value="dimensions"> Dimensions</label>
+                <label><input type="checkbox" name="search-columns[]" value="category"> Category</label>
+                <label><input type="checkbox" name="search-columns[]" value="type"> Type</label>
+                <label><input type="checkbox" name="search-columns[]" value="materials"> Materials</label>
+            </div>
+
+            <!-- Options to enable partial or fuzzy search for date range -->
+            <div id="fuzzy-options">
+                <label><input type="checkbox" name="partial-date"> Allow Partial Date Range</label>
+                <label><input type="checkbox" name="fuzzy-search"> Enable Fuzzy Search</label>
+            </div>
+
+            <!-- Submit button: advanced search -->
+            <button type="submit">Search</button>
+        </form>
+    </section>
 </body>
 </html>
