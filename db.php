@@ -21,10 +21,8 @@ WHERE websearch_to_tsquery(:query) @@ vectorized OR artist.name LIKE '%:query%'"
 
     $rows = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
     print("{\"status\": \"success\", \"objects\": [");
-    $last = array_search(end($rows), $rows);
     foreach ($rows as $row) {
         print("{");
-        $last = array_search(end($row), $row);
         foreach ($row as $key => $value) {
             $escaped_value = addslashes($value);
             $escaped_key = addslashes($key);
