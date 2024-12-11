@@ -19,7 +19,7 @@ FROM artwork JOIN artist ON artwork.artist_id = artist.id
 WHERE websearch_to_tsquery(:query) @@ vectorized OR artist.name LIKE '%:query%'");
     $stmt->execute(["query" => $search]);
 
-    $rows = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
     print("{\"status\": \"success\", \"objects\": [");
     $row_strs = [];
     foreach ($rows as $row) {
