@@ -44,17 +44,30 @@
         <button type="submit">Search</button>
     </section>
 </form>
+<div id="results">
+
+</div>
 <script>
     document.getElementById("form").addEventListener("submit", function (e) {
         e.preventDefault();
         const xhr = new XMLHttpRequest();
         xhr.open("POST", "/db.php");
         xhr.onload = function (event) {
-            console.log(event.target.response);
+            let data = JSON.parse(event.target.response);
+            if (data.status !== "success") {
+                document.getElementById("results").innerText = "Error: " + data.error;
+            } else {
+                let parent = document.getElementById("results");
+                for (let art of data.objects) {
+                    let el = document.createElement("div")
+                    el.className = "card";
+                    el.innerText = art.title;
+                    parent.appendChild(el);
+                }
+            }
         }
         let formData = new FormData(document.getElementById("form"));
         xhr.send(formData);
-        console.log(formData);
     });
 </script>
 </body>
