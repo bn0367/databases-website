@@ -19,16 +19,20 @@ FROM artwork JOIN artist ON artwork.artist_id = artist.id
 WHERE websearch_to_tsquery(:query) @@ vectorized OR artist.name LIKE '%:query%'");
     $stmt->execute(["query" => $search]);
 
-    $rows = $stmt->fetchAll();
-    print("{status: 'success', objects: [");
+    $rows = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+    print("{\"status\": \"success\", \"objects\": [");
+    $last = array_search(end($rows), $rows);
     foreach ($rows as $row) {
         print("{");
+        $last = array_search(end($row), $row);
         foreach ($row as $key => $value) {
             $escaped_value = addslashes($value);
             $escaped_key = addslashes($key);
-            print("'$key': '$value',");
+            print("\"$key\": \"$value\"");
+            print(next($row) ? "," : "");
         }
         print("}");
+        print(next($rows) ? "," : "");
     }
     print("]}");
 } catch (PDOException $e) {
