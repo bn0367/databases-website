@@ -58,6 +58,7 @@
                 document.getElementById("results").innerText = "Error: " + data.error;
             } else {
                 let parent = document.getElementById("results");
+                parent.textContent = "";
                 for (let art of data.objects) {
                     let el = document.createElement("div")
                     el.className = "card";
