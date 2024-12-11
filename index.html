@@ -5,47 +5,57 @@
     <title>Database View</title>
 </head>
 <body>
-    <header>
-        <!-- Main heading of page, brief description -->
-        <h1>Database View</h1>
-        <p>Find artworks by title, artist, date range, and more!</p>
-    </header>
+<header>
+    <!-- Main heading of page, brief description -->
+    <h1>Database View</h1>
+    <p>Find artworks by title, artist, date range, and more!</p>
+</header>
 
-    <!-- Regular Text Search Section -->
+<!-- Regular Text Search Section -->
+<form id="form">
     <section id="basic-search">
-        <form action="db.php" method="POST">
-            <!-- Label and input for basic keyword search -->
-            <label for="basic-search-input">Search:</label>
-            <input type="text" id="basic-search-input" name="basic-search" placeholder="Enter keywords...">
-            <button type="submit">Search</button>
-        </form>
+        <!-- Label and input for basic keyword search -->
+        <label for="basic-search-input">Search:</label>
+        <input type="text" id="basic-search-input" name="basic-search" placeholder="Enter keywords...">
     </section>
 
     <!-- Advanced Search Section -->
     <section id="advanced-search">
         <h2>Advanced Search</h2>
-        <form action="db.php" method="POST">
-            <div id="advanced-options">
-                <!-- Checkboxes for specific search fields -->
-                <label><input type="checkbox" name="search-columns[]" value="title"> Title</label>
-                <label><input type="checkbox" name="search-columns[]" value="artist_name"> Artist Name</label>
-                <label><input type="checkbox" name="search-columns[]" value="date_range"> Date Range</label>
-                <label><input type="checkbox" name="search-columns[]" value="culture"> Culture</label>
-                <label><input type="checkbox" name="search-columns[]" value="dimensions"> Dimensions</label>
-                <label><input type="checkbox" name="search-columns[]" value="category"> Category</label>
-                <label><input type="checkbox" name="search-columns[]" value="type"> Type</label>
-                <label><input type="checkbox" name="search-columns[]" value="materials"> Materials</label>
-            </div>
+        <details id="advanced-options">
+            <!-- Checkboxes for specific search fields -->
+            <label><input type="checkbox" name="search-columns[]" value="title"> Title</label>
+            <label><input type="checkbox" name="search-columns[]" value="artist_name"> Artist Name</label>
+            <label><input type="checkbox" name="search-columns[]" value="date_range"> Date Range</label>
+            <label><input type="checkbox" name="search-columns[]" value="culture"> Culture</label>
+            <label><input type="checkbox" name="search-columns[]" value="dimensions"> Dimensions</label>
+            <label><input type="checkbox" name="search-columns[]" value="category"> Category</label>
+            <label><input type="checkbox" name="search-columns[]" value="type"> Type</label>
+            <label><input type="checkbox" name="search-columns[]" value="materials"> Materials</label>
+        </details>
 
-            <!-- Options to enable partial or fuzzy search for date range -->
-            <div id="fuzzy-options">
-                <label><input type="checkbox" name="partial-date"> Allow Partial Date Range</label>
-                <label><input type="checkbox" name="fuzzy-search"> Enable Fuzzy Search</label>
-            </div>
+        <!-- Options to enable partial or fuzzy search for date range -->
+        <details id="fuzzy-options">
+            <label><input type="checkbox" name="partial-date"> Allow Partial Date Range</label>
+            <label><input type="checkbox" name="fuzzy-search"> Enable Fuzzy Search</label>
+        </details>
 
-            <!-- Submit button: advanced search -->
-            <button type="submit">Search</button>
-        </form>
+        <!-- Submit button: advanced search -->
+        <button type="submit">Search</button>
     </section>
+</form>
+<script>
+    document.getElementById("form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "/db.php");
+        xhr.onload = function (event) {
+            console.log(event.target.response);
+        }
+        let formData = new FormData(document.getElementById("form"));
+        xhr.send(formData);
+        console.log(formData);
+    });
+</script>
 </body>
 </html>
