@@ -14,7 +14,7 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 
-    $stmt = $conn->prepare("SELECT id, title, artist.name, date_range 
+    $stmt = $conn->prepare("SELECT artwork.id, title, artist.name, date_range 
 FROM artwork JOIN artist ON artwork.artist_id = artist.id 
 WHERE websearch_to_tsquery(:query) @@ vectorized OR artist.name LIKE '%:query%'");
     $stmt->execute(["query" => $search]);
