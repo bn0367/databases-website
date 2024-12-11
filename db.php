@@ -14,9 +14,11 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 
-    $stmt = $conn->prepare("SELECT artwork.id, title, artist.name, date_range 
+    $stmt = $conn->prepare("
+SELECT artwork.id, title, artist.name, date_range, ts_rank(vectorized, :query) AS rank 
 FROM artwork JOIN artist ON artwork.artist_id = artist.id 
-WHERE websearch_to_tsquery(:query) @@ vectorized OR artist.name LIKE '%:query%'");
+WHERE websearch_to_tsquery(:query) @@ vectorized OR artist.name LIKE '%:query%' 
+ORDER BY rank DESC LIMIT 10");
     $stmt->execute(["query" => $search]);
 
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
