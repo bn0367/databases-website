@@ -1,7 +1,7 @@
 <?php
 
 global $serverName, $dbName, $user, $pw;
-include "vars.php";
+include "../vars.php";
 
 try {
     print("<!DOCTYPE html><html lang='en'><head><title>View Table</title><link rel='stylesheet' href='style.css'></head><body><a href='/'>Back</a><br/>");
