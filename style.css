@@ -1,3 +1,33 @@
+header {
+    margin: 1rem auto;
+    padding: 1rem;
+    width: fit-content;
+    background-color: #f3f3f3;
+    border: 2px solid #ccc;
+    border-radius: 15px;
+    text-align: center;
+}
+
+#search-bar-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    margin: 10px 0;
+}
+
+#search-bar-container label {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+#search-bar-container input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
 /* General styling for the <details> element */
 details {
     margin: 1rem 0;
@@ -73,4 +103,12 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
     background-color: #0056b3;
+}
+
+body {
+    margin: 0;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #86a7ae; /* Change this to your desired color */
+    color: #333;
+    line-height: 1.5;
 }
