@@ -25,7 +25,7 @@ try {
         foreach ($row as $key => $value) {
             $escaped_value = addslashes($value);
             $escaped_key = addslashes($key);
-            $values[] = "\"$key\": \"$value\"";
+            $values[] = "\"$escaped_key\": \"$escaped_value\"";
         }
         $row_str .= implode(",", $values);
         $row_str .= "}";
