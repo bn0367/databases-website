@@ -92,7 +92,7 @@ details[open] summary {
 }
 
 /* Styling for grid layout inside advanced search options */
-#advanced-options {
+.advanced-search-set {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 10px;
@@ -101,10 +101,10 @@ details[open] summary {
     background-color: #5ea5a7;
     border: 1px solid #ddd;
     border-radius: 5px;
+    margin: 10px 0;
 }
 
-#advanced-options label {
-    display: flex;
+.advanced-search-set label {
     align-items: center;
     gap: 0.5rem;
     font-size: 0.9rem;

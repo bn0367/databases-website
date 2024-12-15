@@ -17,45 +17,103 @@
     <section id="basic-search">
         <!-- Label and input for basic keyword search -->
         <label for="basic-search-input">Search:</label>
-        <input type="text" id="basic-search-input" name="basic-search" placeholder="Enter keywords...">
-        <!-- Additional search fields -->
-        <div id="search-fields-container">
-            <label for="culture-search">Culture:</label>
-            <input type="text" id="culture-search" name="culture-search" placeholder="Enter culture...">
-
-            <label for="category-search">Category:</label>
-            <input type="text" id="category-search" name="category-search" placeholder="Enter category...">
-
-            <label for="type-search">Type:</label>
-            <input type="text" id="type-search" name="type-search" placeholder="Enter type...">
-
-            <label for="materials-search">Materials:</label>
-            <input type="text" id="materials-search" name="materials-search" placeholder="Enter materials...">
-
-            <label for="dimensions-search">Dimensions:</label>
-            <input type="text" id="dimensions-search" name="dimensions-search" placeholder="Enter dimensions...">
-        </div>
+        <input type="text" id="basic-search-input" name="basic-search">
+        <label>
+            <input type="number" max="2099" step="1" name="date-search-start" />
+        </label>
+        <label>
+            <input type="number" max="2099" step="1" name="date-search-end" />
+        </label>
     </section>
 
     <!-- Advanced Search Section -->
     <section id="advanced-search">
         <h2>Advanced Search</h2>
-        <details id="advanced-options">
+        <details id="search-columns">
+            <summary>Search Columns</summary>
             <!-- Checkboxes for specific search fields -->
-            <label><input type="checkbox" name="search-columns[]" value="title"> Title</label>
-            <label><input type="checkbox" name="search-columns[]" value="artist_name"> Artist Name</label>
-            <label><input type="checkbox" name="search-columns[]" value="date_range"> Date Range</label>
-            <label><input type="checkbox" name="search-columns[]" value="culture"> Culture</label>
-            <label><input type="checkbox" name="search-columns[]" value="dimensions"> Dimensions</label>
-            <label><input type="checkbox" name="search-columns[]" value="category"> Category</label>
-            <label><input type="checkbox" name="search-columns[]" value="type"> Type</label>
-            <label><input type="checkbox" name="search-columns[]" value="materials"> Materials</label>
+            <div class="advanced-search-set">
+                <label><input type="checkbox" name="search-columns[]" value="title"> Title</label>
+                <label><input type="checkbox" name="search-columns[]" value="artist_name"> Artist Name</label>
+                <label><input type="checkbox" name="search-columns[]" value="date_range"> Date Range</label>
+                <label><input type="checkbox" name="search-columns[]" value="culture"> Culture</label>
+                <label><input type="checkbox" name="search-columns[]" value="dimensions"> Dimensions</label>
+                <label><input type="checkbox" name="search-columns[]" value="category"> Category</label>
+                <label><input type="checkbox" name="search-columns[]" value="type"> Type</label>
+                <label><input type="checkbox" name="search-columns[]" value="materials"> Materials</label>
+            </div>
         </details>
 
         <!-- Options to enable partial or fuzzy search for date range -->
         <details id="fuzzy-options">
-            <label><input type="checkbox" name="partial-date"> Allow Partial Date Range</label>
-            <label><input type="checkbox" name="fuzzy-search"> Enable Fuzzy Search</label>
+            <summary>Date Search Options</summary>
+            <div class="advanced-search-set">
+                <label><input type="checkbox" name="partial-date"> Allow Partial Date Range</label>
+                <label><input type="checkbox" name="fuzzy-search"> Enable Fuzzy Search</label></div>
+        </details>
+
+        <details class="advanced-search-set" id="advanced-options">
+            <summary>Advanced Search Fields</summary>
+            <div class="advanced-search-set">
+                <div>
+                    <label for="dim-search1">Dimensions from:</label>
+                    <fieldset id="dim-search1" class="dimensions-search">
+                        <label>
+                            <input type="number" name="dimensions-search1" step=".001">
+                            in. ×
+                        </label>
+                        <label>
+                            <input type="number" name="dimensions-search2" step=".001">
+                            in. ×
+                        </label>
+                        <label>
+                            <input type="number" name="dimensions-search3" step=".001">
+                            in. ×
+                        </label>
+                        <label>
+                            <input type="number" name="dimensions-search4" step=".001">
+                            in.
+                        </label>
+                    </fieldset>
+                </div>
+                <div>
+                    <label for="dim-search2">To:</label>
+                    <fieldset id="dim-search2" class="dimensions-search">
+                        <label>
+                            <input type="number" name="dimensions-search5" step=".001">
+                            in. ×
+                        </label>
+                        <label>
+                            <input type="number" name="dimensions-search6" step=".001">
+                            in. ×
+                        </label>
+                        <label>
+                            <input type="number" name="dimensions-search7" step=".001">
+                            in. ×
+                        </label>
+                        <label>
+                            <input type="number" name="dimensions-search8" step=".001">
+                            in.
+                        </label>
+                    </fieldset>
+                </div>
+                <div>
+                    <label for="culture-search">Culture:</label>
+                    <input type="text" id="culture-search" name="culture-search" placeholder="Enter culture...">
+                </div>
+                <div>
+                    <label for="category-search">Category:</label>
+                    <input type="text" id="category-search" name="category-search" placeholder="Enter category...">
+                </div>
+                <div>
+                    <label for="type-search">Type:</label>
+                    <input type="text" id="type-search" name="type-search" placeholder="Enter type...">
+                </div>
+                <div>
+                    <label for="materials-search">Materials:</label>
+                    <input type="text" id="materials-search" name="materials-search" placeholder="Enter materials...">
+                </div>
+            </div>
         </details>
 
         <!-- Submit button: advanced search -->
@@ -78,7 +136,7 @@
                 let parent = document.getElementById("results");
                 parent.textContent = "";
                 for (let art of data.objects) {
-                    let el = document.createElement("div")
+                    let el = document.createElement("div");
                     el.className = "card";
                     el.innerText = art.title;
                     parent.appendChild(el);
