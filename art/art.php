@@ -11,7 +11,7 @@ try {
     $conn = new PDO("pgsql:host=$serverName;dbname=$dbName", $user, $pw);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $stmt = $conn->prepare("SELECT artwork.id, title, name as artist, date_range as date, culture, category, type, materials FROM artwork JOIN artist ON artwork.artist_id = artist.id JOIN metadata ON artwork.id = metadata.id WHERE artwork.id = :id");
+    $stmt = $conn->prepare("SELECT artwork.id, title, name as artist, date_range as date, culture, category, type, materials, description FROM artwork JOIN artist ON artwork.artist_id = artist.id JOIN metadata ON artwork.id = metadata.id WHERE artwork.id = :id");
     $stmt->execute(array(
         "id" => $_POST['id'],
     ));
