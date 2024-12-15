@@ -1,15 +1,12 @@
 header {
     margin: 1rem auto;
+    font-family: 'Libre Baskerville', serif
     padding: 1rem;
     width: fit-content;
     background-color: #f3f3f3;
     border: 2px solid #ccc;
     border-radius: 15px;
     text-align: center;
-}
-
-header h1 {
-    font-family: 'Libre Baskerville', serif;
 }
 
 #search-bar-container {
