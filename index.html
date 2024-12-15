@@ -16,7 +16,7 @@
 <form id="form">
     <section id="basic-search">
         <!-- Label and input for basic keyword search -->
-        <label for="basic-search-input">Search:</label>
+        <label for="basic-search-input">Search</label>
         <input type="text" id="basic-search-input" name="basic-search" placeholder="Enter keywords...">
         <!-- Additional search fields -->
         <div id="search-fields-container">
@@ -78,7 +78,8 @@
                 let parent = document.getElementById("results");
                 parent.textContent = "";
                 for (let art of data.objects) {
-                    let el = document.createElement("div")
+                    let el = document.createElement("a");
+                    el.href = `art/?id=${art.id}`;
                     el.className = "card";
                     el.innerText = art.title;
                     parent.appendChild(el);
