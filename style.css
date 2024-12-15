@@ -57,7 +57,7 @@ details[open] summary {
     gap: 10px;
     padding: 10px;
     margin-top: 10px;
-    background-color: #a9d9ca;
+    background-color: #5ea5a7;
     border: 1px solid #ddd;
     border-radius: 5px;
 }
@@ -77,7 +77,7 @@ details[open] summary {
     flex-direction: column;
     gap: 0.5rem;
     padding: 10px;
-    background-color: #a9d9ca;
+    background-color: #5ea5a7;
     border: 1px solid #ddd;
     border-radius: 5px;
 }
