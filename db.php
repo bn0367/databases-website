@@ -4,34 +4,39 @@ global $serverName, $dbName, $user, $pw;
 include "vars.php";
 
 try {
-    print("<!DOCTYPE html><html lang='en'><head><title>View Table</title><link rel='stylesheet' href='style.css'></head><body><a href='/'>Back</a><br/>");
-    $table = $_POST['table'];
-
-    if (!in_array($table, ["artwork", "artist", "dimensions", "metadata"])) {
-        print("Invalid table name.</body></html>");
+    if (isset($_POST['basic-search'])) {
+        $search = $_POST['basic-search'];
+    } else {
+        print("{status: 'error', error: 'No search text provided!'}");
         die();
     }
-
     $conn = new PDO("pgsql:host=$serverName;dbname=$dbName", $user, $pw);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    # bad
-    $stmt = $conn->prepare("SELECT * FROM " . $table . " LIMIT 100");
-    $stmt->execute();
-    print("<table><tr>");
-    for ($i = 0; $i < $stmt->columnCount(); $i++) {
-        $col = $stmt->getColumnMeta($i);
-        print("<th>" . $col["name"] . "</th>");
-    }
-    print("</tr>");
-    foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row) {
-        print("<tr>");
+
+    $stmt = $conn->prepare("
+SELECT artwork.id, title, artist.name, date_range
+FROM artwork JOIN artist ON artwork.artist_id = artist.id 
+WHERE websearch_to_tsquery(:query) @@ vectorized OR artist.name LIKE '%:query%'");
+    $stmt->execute(["query" => $search]);
+
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    print("{\"status\": \"success\", \"objects\": [");
+    $row_strs = [];
+    foreach ($rows as $row) {
+        $row_str = "{";
+        $values = [];
         foreach ($row as $key => $value) {
-            print("<td>" . $value . "</td>");
+            $escaped_value = addslashes($value);
+            $escaped_key = addslashes($key);
+            $values[] = "\"$key\": \"$value\"";
         }
-        print("</tr>");
+        $row_str .= implode(",", $values);
+        $row_str .= "}";
+        $row_strs[] = $row_str;
     }
-    print("</table></body></html>");
+    print(implode(",", $row_strs));
+    print("]}");
 } catch (PDOException $e) {
     print("Internal Server Error: " . $e->getMessage());
 }

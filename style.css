@@ -105,10 +105,8 @@ button[type="submit"]:hover {
     background-color: #0056b3;
 }
 
-body {
-    margin: 0;
-    font-family: 'Times New Roman', Times, serif;
-    background-color: #86a7ae; /* Change this to your desired color */
-    color: #333;
-    line-height: 1.5;
+.card {
+    box-shadow: 2px 2px #333333;
+    display: grid;
+    grid-template-rows: 25%;
 }
