@@ -61,6 +61,7 @@ header {
     border: 2px solid #ccc; 
     border-radius: 5px;
     width: 100%;  
+    max-width: 500px;
     margin-bottom: 1rem;  /* space between inputs */
 }
 
