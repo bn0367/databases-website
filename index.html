@@ -136,7 +136,8 @@
                 let parent = document.getElementById("results");
                 parent.textContent = "";
                 for (let art of data.objects) {
-                    let el = document.createElement("div");
+                    let el = document.createElement("a");
+                    el.href = `art/?id=${art.id}`;
                     el.className = "card";
                     el.innerText = art.title;
                     parent.appendChild(el);

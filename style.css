@@ -21,7 +21,7 @@ header {
 .search-wrapper label {
     margin-right: 10px;  /* space between the label and input */
     color: #fff;  
-    font-size: 16px;  
+    font-size: 20px;  
 }
 
 #basic-search-input {
@@ -46,7 +46,8 @@ header {
 }
 
 #search-fields-container {
-    display: block;  /* stack elements vertically */
+    display: flex;  /* Use flexbox for vertical alignment */
+    flex-direction: column;  /* Stack items vertically */
     margin: 10px 0;
 }
 
