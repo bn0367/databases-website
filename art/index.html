@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Art Piece Details</title>
-    <link rel="stylesheet" href="../style.css"> <!-- Reusing main styles -->
+    <link rel="stylesheet" href="../style.css"> <!-- main styling -->
     <style>
-        /* Temporary page-specific styles */
+        /* Temp page styles */
         body {
             font-family: 'Georgia', serif;
             margin: 2rem;
@@ -59,21 +59,66 @@
     </style>
 </head>
 <body>
+    <!-- Art Piece Container -->
     <div class="art-container">
         <!-- Placeholder Image -->
         <img src="../images/placeholder.jpg" alt="Art Piece" class="art-image">
 
         <!-- Art Details Section -->
-        <div class="art-details">
-            <h1>Title of the Art Piece</h1>
-            <p><span class="label">Artist Name:</span> Joan Mitchell</p>
-            <p><span class="label">Date Range:</span> 1925–1992</p>
-            <p><span class="label">Culture:</span> American</p>
-            <p><span class="label">Category:</span> Painting</p>
-            <p><span class="label">Type:</span> Oil on Canvas</p>
-            <p><span class="label">Materials:</span> Oil Paint, Canvas</p>
+        <div class="art-details" id="art-details">
+            <h1 id="title">Loading...</h1>
+            <p><span class="label">Artist Name:</span> <span id="artist">Loading...</span></p>
+            <p><span class="label">Date Range:</span> <span id="date">Loading...</span></p>
+            <p><span class="label">Culture:</span> <span id="culture">Loading...</span></p>
+            <p><span class="label">Category:</span> <span id="category">Loading...</span></p>
+            <p><span class="label">Type:</span> <span id="type">Loading...</span></p>
+            <p><span class="label">Materials:</span> <span id="materials">Loading...</span></p>
         </div>
     </div>
+
+    <script>
+        // id param from url
+        const urlParams = new URLSearchParams(window.location.search);
+        const artId = urlParams.get('id'); // find art piece ID
+
+        // Check if an art ID exists in the URL
+        if (!artId) {
+            document.getElementById("art-details").innerHTML = "<p>Error: No art piece ID provided.</p>";
+        } else {
+            // fetch art piece details
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", "/art.php"); // POST request
+            xhr.onload = function (event) {
+                let data = JSON.parse(event.target.response);
+
+                // error check
+                if (data.status !== "success") {
+                    document.getElementById("art-details").innerHTML = "<p>Error: " + data.error + "</p>";
+                } else {
+                    // artID matching
+                    let art = data.objects.find(obj => obj.id == artId);
+                    
+                    // if found -> populate
+                    if (art) {
+                        document.getElementById("title").innerText = art.title;
+                        document.getElementById("artist").innerText = art.artist || "Unknown";
+                        document.getElementById("date").innerText = art.date || "N/A";
+                        document.getElementById("culture").innerText = art.culture || "N/A";
+                        document.getElementById("category").innerText = art.category || "N/A";
+                        document.getElementById("type").innerText = art.type || "N/A";
+                        document.getElementById("materials").innerText = art.materials || "N/A";
+                    } else {
+                        document.getElementById("art-details").innerHTML = "<p>Error: Art piece not found.</p>";
+                    }
+                }
+            };
+
+            // new POST request with artID
+            let formData = new FormData();
+            formData.append("id", artId); // send in the artID
+            xhr.send(formData);
+        }
+    </script>
 </body>
 </html>
 
