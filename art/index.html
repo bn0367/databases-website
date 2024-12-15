@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Piece Details</title>
+    <link rel="stylesheet" href="../style.css"> <!-- Reusing main styles -->
+    <style>
+        /* Temporary page-specific styles */
+        body {
+            font-family: 'Georgia', serif;
+            margin: 2rem;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .art-container {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+            border: 1px solid #ccc;
+            padding: 1rem;
+            background-color: white;
+            max-width: 1000px;
+            margin: 0 auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .art-image {
+            width: 50%;
+            min-width: 300px;
+            height: auto;
+        }
+
+        .art-details {
+            border: 1px solid #999;
+            padding: 1.5rem;
+            flex: 1;
+            background-color: #fcfcfc;
+            border-radius: 4px;
+        }
+
+        .art-details h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #000;
+        }
+
+        .art-details p {
+            margin: 0.5rem 0;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="art-container">
+        <!-- Placeholder Image -->
+        <img src="../images/placeholder.jpg" alt="Art Piece" class="art-image">
+
+        <!-- Art Details Section -->
+        <div class="art-details">
+            <h1>Title of the Art Piece</h1>
+            <p><span class="label">Artist Name:</span> Joan Mitchell</p>
+            <p><span class="label">Date Range:</span> 1925–1992</p>
+            <p><span class="label">Culture:</span> American</p>
+            <p><span class="label">Category:</span> Painting</p>
+            <p><span class="label">Type:</span> Oil on Canvas</p>
+            <p><span class="label">Materials:</span> Oil Paint, Canvas</p>
+        </div>
+    </div>
+</body>
+</html>
+
