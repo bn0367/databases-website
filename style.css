@@ -9,6 +9,21 @@ header {
     text-align: center;
 }
 
+.search-wrapper {
+    display: flex;  /* Flexbox for left-aligned label and input */
+    align-items: center;  
+    background-color: #000;  
+    padding: 10px;  
+    border-radius: 25px;  /* rounded corners */
+    margin-left: 0;  
+}
+
+.search-wrapper label {
+    margin-right: 10px;  /* space between the label and input */
+    color: #fff;  
+    font-size: 16px;  
+}
+
 #basic-search-input {
     width: 100%;  
     max-width: 500px;  /* Maximum width of the input */
@@ -17,7 +32,7 @@ header {
     padding: 10px 15px;  
     border: 2px solid #000;  /* Black border */
     border-radius: 25px;  /* Rounded corners */
-    background-color: #676161; 
+    background-color: #fff; 
     color: #333;  
     margin-left: 0;  /* align to left margin */
     display: block;  /* individual line */
@@ -30,25 +45,29 @@ header {
     box-shadow: 0 0 10px rgba(73, 95, 116, 0.6); /* glow effect */
 }
 
-#search-bar-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 10px;
+#search-fields-container {
+    display: block;  /* stack elements vertically */
     margin: 10px 0;
 }
 
-#search-bar-container label {
+#search-fields-container label {
     margin-top: 0.5rem;
-    font-size: 0.9rem;
+    font-size: 1rem;  /* larger font */
     font-weight: bold;
 }
 
-#search-bar-container input {
-    padding: 0.5rem;
-    border: 1px solid #ccc;
+#search-fields-container input {
+    padding: 0.8rem;  
+    border: 2px solid #ccc; 
     border-radius: 5px;
-    width: 100%;
+    width: 100%;  
+    margin-bottom: 1rem;  /* space between inputs */
 }
+
+#search-bar-container input:last-child {
+    margin-bottom: 0;  /* remove bottom margin from last input box */
+}
+
 
 /* General styling for the <details> element */
 details {
