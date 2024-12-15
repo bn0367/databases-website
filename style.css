@@ -56,33 +56,7 @@ header {
     box-shadow: 0 0 10px rgba(73, 95, 116, 0.6); /* glow effect */
 }
 
-#search-fields-container {
-    display: flex;  /* Use flexbox for vertical alignment */
-    flex-direction: column;  /* Stack items vertically */
-    margin: 10px 0;
-}
-
-#search-fields-container label {
-    margin-top: 0.5rem;
-    font-size: 1rem;  /* larger font */
-    font-weight: bold;
-}
-
-#search-fields-container input {
-    padding: 0.8rem;  
-    border: 2px solid #ccc; 
-    border-radius: 5px;
-    width: 100%;  
-    max-width: 500px;
-    margin-bottom: 1rem;  /* space between inputs */
-}
-
-#search-bar-container input:last-child {
-    margin-bottom: 0;  /* remove bottom margin from last input box */
-}
-
-
-/* General styling for the <details> element */
+/* for the <details> element */
 details {
     margin: 1rem 0;
     padding: 0.5rem;
@@ -123,10 +97,6 @@ details[open] summary {
     color: #333;
 }
 
-#search-wrapper label, 
-#advanced-options label {
-    font-size: 1rem;  /* Same size for both labels */
-}
 
 /* Styling for the additional options under fuzzy search */
 #fuzzy-options {
