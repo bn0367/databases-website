@@ -112,6 +112,11 @@ details[open] summary {
     color: #333;
 }
 
+#search-wrapper label, 
+#advanced-options label {
+    font-size: 1rem;  /* Same size for both labels */
+}
+
 /* Styling for the additional options under fuzzy search */
 #fuzzy-options {
     margin-top: 1rem;
