@@ -18,13 +18,14 @@
         <!-- Label and input for basic keyword search -->
         <label for="basic-search-input">Search:</label>
         <input type="text" id="basic-search-input" name="basic-search">
-        <label>
-            <input type="number" max="2099" step="1" name="date-search-start" />
-        </label>
-        <label>
-            <input type="number" max="2099" step="1" name="date-search-end" />
-        </label>
+        
+        <label for="date-search-start">Year from:</label>
+        <input type="number" id="date-search-start" max="2099" step="1" name="date-search-start" />
+        
+        <label for="date-search-end">Year to:</label>
+        <input type="number" id="date-search-end" max="2099" step="1" name="date-search-end" />
     </section>
+    
 
     <!-- Advanced Search Section -->
     <section id="advanced-search">
