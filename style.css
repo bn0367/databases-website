@@ -9,6 +9,27 @@ header {
     text-align: center;
 }
 
+#basic-search-input {
+    width: 100%;  
+    max-width: 500px;  /* Maximum width of the input */
+    height: 50px;  
+    font-size: 18px;  /* Larger font? */
+    padding: 10px 15px;  
+    border: 2px solid #000;  /* Black border */
+    border-radius: 25px;  /* Rounded corners */
+    background-color: #fff; 
+    color: #333;  
+    margin-left: 0;  /* align to left margin */
+    display: block;  /* individual line */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* shadow effect */
+}
+
+#basic-search-input:focus {
+    border-color: #495f74; /* focused border color */
+    outline: none; /* no default outline */
+    box-shadow: 0 0 10px rgba(73, 95, 116, 0.6); /* glow effect */
+}
+
 #search-bar-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
