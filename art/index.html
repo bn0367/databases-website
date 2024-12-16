@@ -10,15 +10,15 @@
         body {
             font-family: 'Georgia', serif;
             margin: 2rem;
-            background: url("../images/triumphofdeath.png") center center / cover no-repeat;
-            background-color: rgba(255, 255, 255, 0.85); /* Transparent white fallback */
+            /* Transparent white fallback */
+            background: rgba(255, 255, 255, 0.85) url("../images/triumphofdeath.jpeg") no-repeat center center;
             background-blend-mode: overlay; /* Ensures transparency effect */
             color: #333;
         }
 
         .art-container {
             display: flex;
-            flex-direction:  column;
+            flex-direction: column;
             gap: 2rem;
             align-items: flex-start;
             border: 1px solid #ccc;
@@ -117,13 +117,13 @@
 </div>
 
 
-    <!-- Description Box -->
-    <div class="art-description" id="description">
-        <p><strong>Description:</strong> Loading...</p>
-    </div>
+<!-- Description Box -->
+<div class="art-description" id="description">
+    <p><strong>Description:</strong> Loading...</p>
+</div>
 
-    <!-- Back Button -->
-    <input type="button" value="Back" class="back-button" onclick="window.history.go(-1); return false;">
+<!-- Back Button -->
+<input type="button" value="Back" class="back-button" onclick="window.history.go(-1); return false;">
 </div>
 
 <script>

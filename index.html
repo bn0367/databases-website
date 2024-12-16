@@ -18,39 +18,24 @@
         <!-- Label and input for basic keyword search -->
         <label for="basic-search-input">Search:</label>
         <input type="text" id="basic-search-input" name="basic-search">
-        
+
         <label for="date-search-start">Year from:</label>
-        <input type="number" id="date-search-start" max="2099" step="1" name="date-search-start" />
-        
+        <input type="number" id="date-search-start" max="2099" step="1" name="date-search-start"/>
+
         <label for="date-search-end">Year to:</label>
-        <input type="number" id="date-search-end" max="2099" step="1" name="date-search-end" />
+        <input type="number" id="date-search-end" max="2099" step="1" name="date-search-end"/>
     </section>
-    
+
 
     <!-- Advanced Search Section -->
     <section id="advanced-search">
         <h2>Advanced Search</h2>
-        <details id="search-columns">
-            <summary>Search Columns</summary>
-            <!-- Checkboxes for specific search fields -->
-            <div class="advanced-search-set">
-                <label><input type="checkbox" name="search-columns[]" value="title"> Title</label>
-                <label><input type="checkbox" name="search-columns[]" value="artist_name"> Artist Name</label>
-                <label><input type="checkbox" name="search-columns[]" value="date_range"> Date Range</label>
-                <label><input type="checkbox" name="search-columns[]" value="culture"> Culture</label>
-                <label><input type="checkbox" name="search-columns[]" value="dimensions"> Dimensions</label>
-                <label><input type="checkbox" name="search-columns[]" value="category"> Category</label>
-                <label><input type="checkbox" name="search-columns[]" value="type"> Type</label>
-                <label><input type="checkbox" name="search-columns[]" value="materials"> Materials</label>
-            </div>
-        </details>
-
         <!-- Options to enable partial or fuzzy search for date range -->
         <details id="fuzzy-options">
             <summary>Date Search Options</summary>
             <div class="advanced-search-set">
-                <label><input type="checkbox" name="partial-date"> Allow Partial Date Range</label>
-                <label><input type="checkbox" name="fuzzy-search"> Enable Fuzzy Search</label></div>
+                <label><input type="checkbox" name="partial-date" checked> Allow Partial Date Range</label>
+                <label><input type="checkbox" name="fuzzy-search" checked> Enable Fuzzy Search</label></div>
         </details>
 
         <details class="advanced-search-set" id="advanced-options">

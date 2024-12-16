@@ -5,7 +5,7 @@ include "../vars.php";
 
 try {
     if (!isset($_POST['id'])) {
-        print("{status: 'error', error: 'No id provided!'}");
+        print('{"status": "error", error: "No id provided!"}');
         die();
     }
     $conn = new PDO("pgsql:host=$serverName;dbname=$dbName", $user, $pw);
@@ -25,7 +25,7 @@ try {
         foreach ($row as $key => $value) {
             $escaped_value = addslashes($value);
             $escaped_value = str_replace(["\n", "\r"], "", $escaped_value);
-            $escaped_value = str_replace("\\'", '\'', $escaped_value);
+            $escaped_value = str_replace(["\\'", "’"], '\'', $escaped_value);
             $escaped_key = addslashes($key);
             $values[] = "\"$escaped_key\": \"$escaped_value\"";
         }
@@ -36,5 +36,5 @@ try {
     print(implode(",", $row_strs));
     print("]}");
 } catch (PDOException $e) {
-    print("Internal Server Error: " . $e->getMessage());
+    print('{"status": "error", "error": "' . addslashes($e->getMessage()) . '"}');
 }
