@@ -10,12 +10,15 @@
         body {
             font-family: 'Georgia', serif;
             margin: 2rem;
-            background-color: #f9f9f9;
+            background: url("../images/triumphofdeath.png") center center / cover no-repeat;
+            background-color: rgba(255, 255, 255, 0.85); /* Transparent white fallback */
+            background-blend-mode: overlay; /* Ensures transparency effect */
             color: #333;
         }
 
         .art-container {
             display: flex;
+            flex-direction:  column;
             gap: 2rem;
             align-items: flex-start;
             border: 1px solid #ccc;
@@ -25,6 +28,11 @@
             margin: 0 auto;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .art-details-container {
+            display: flex;
+            gap: 2rem;
         }
 
         .art-image {
@@ -56,6 +64,38 @@
         .label {
             font-weight: bold;
         }
+
+        /* Description Box */
+        .art-description {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #f5f5f5;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Back Button Styling */
+        .back-button {
+            display: block;
+            margin: 2rem auto 0; /* Center the button horizontally */
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: bold;
+            color: white;
+            background-color: #333;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .back-button:hover {
+            background-color: #555;
+        }
     </style>
 </head>
 <body>
@@ -76,6 +116,16 @@
     </div>
 </div>
 
+
+    <!-- Description Box -->
+    <div class="art-description" id="description">
+        <p><strong>Description:</strong> Loading...</p>
+    </div>
+
+    <!-- Back Button -->
+    <input type="button" value="Back" class="back-button" onclick="window.history.go(-1); return false;">
+</div>
+
 <script>
     // id param from url
     const urlParams = new URLSearchParams(window.location.search);
@@ -84,6 +134,7 @@
     // Check if an art ID exists in the URL
     if (!artId) {
         document.getElementById("art-details").innerHTML = "<p>Error: No art piece ID provided.</p>";
+        document.getElementById("description").innerHTML = "<p>Error: No description available.</p>";
     } else {
         // fetch art piece details
         const xhr = new XMLHttpRequest();
@@ -94,6 +145,7 @@
             // error check
             if (data.status !== "success") {
                 document.getElementById("art-details").innerHTML = "<p>Error: " + data.error + "</p>";
+                document.getElementById("description").innerHTML = "<p>Error: No description available.</p>";
             } else {
                 // artID matching
                 let art = data.objects.find(obj => obj.id === artId);
@@ -106,8 +158,10 @@
                     document.getElementById("category").innerText = art.category || "N/A";
                     document.getElementById("type").innerText = art.type || "N/A";
                     document.getElementById("materials").innerText = art.materials || "N/A";
+                    document.getElementById("description").innerHTML = `<p><strong>Description:</strong> ${art.description || "No description provided."}</p>`;
                 } else {
                     document.getElementById("art-details").innerHTML = "<p>Error: Art piece not found.</p>";
+                    document.getElementById("description").innerHTML = "<p>Error: No description available.</p>";
                 }
             }
         };
