@@ -24,6 +24,8 @@ try {
         $values = [];
         foreach ($row as $key => $value) {
             $escaped_value = addslashes($value);
+            $escaped_value = str_replace(["\n", "\r"], "", $escaped_value);
+            $escaped_value = str_replace("\\'", '\'', $escaped_value);
             $escaped_key = addslashes($key);
             $values[] = "\"$escaped_key\": \"$escaped_value\"";
         }
